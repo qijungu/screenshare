@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Screen Share{% endblock %}
+
+{% block metas %}
+{{super()}}
+<meta charset="UTF-8"/>
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/jquery-confirm.min.css')}}"/>
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}?ver=2"/>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static', filename='js/jquery-confirm.min.js')}}"></script>
+
+<script src="{{url_for('static', filename='js/screen.js')}}?ver=3"></script>
+{% endblock %}
+
+{% block body_attribs %}
+ontouchstart=""
+class="homepage"
+{% endblock %}
+
+{% block navbar %}
+<header id="header">
+</header>
+{% endblock %}
+
+{% block content %}
+<section id="feature" class="fullwidth">
+	<div class="container fullwidth">
+		<div class="center fullwidth">
+			<img src="" class="livescreen fullwidth">
+		</div>
+	</div>
+</section>
+{% endblock %}
