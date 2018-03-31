@@ -28,4 +28,4 @@ In short, the computer to share screen runs this Python script that captures scr
 
 4. On other computers, open a web browser and browse "**http://serverip:port**".
 
-	For example, if the serverip is 192.168.0.101 and the service port is 18331, then the URL to browse is "http://192.168.0.101:18331".
+	For example, if the server ip is 192.168.0.101 and the service port is 18331, then the URL to browse is "http://192.168.0.101:18331".
