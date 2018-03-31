@@ -23,4 +23,9 @@ def screenfeed():
 
 ### main ###
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', threaded=True)
+    from sys import argv
+    if len(argv) <= 1:
+        port = 18331
+    else:
+        port = int(argv[1])
+    app.run(host='0.0.0.0', port=port, threaded=True)
