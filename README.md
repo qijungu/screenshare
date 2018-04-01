@@ -10,21 +10,23 @@ Of course, if you want to share your screen on the Internet, all you need to do 
 
 **Security reminder** Do not run this service if you do not need to share screen.
 
-## Requirements (what I have in my own computer)
+## Requirements
 
-+ Fedora 26 + Gnome3 running on Xorg
+This tool can run on Linux, Windows and MAC.
 
-+ Python 2.7
++ Python 2.x or 3.x
 
-+ Know issue: This tool does not work with Wayland because of a <a href="https://fedoraproject.org/wiki/How_to_debug_Wayland_problems#Screen_capture_is_not_available_with_usual_apps">security reason</a>. You must use Xorg (by selecting Xorg on login).
++ Know issue: In Linux, this tool does not work with Wayland because of a <a href="https://fedoraproject.org/wiki/How_to_debug_Wayland_problems#Screen_capture_is_not_available_with_usual_apps">security reason</a>. You must use Xorg (by selecting Xorg on login).
 
-## Installation and Run
+## Install and Run
 
 1. pip install Flask-Bootstrap pyscreenshot
 
 2. In a directory, run "**git clone https://gitlab.com/qijungu/screenshare.git**". You will have a new directory "screenshare" with code inside.
 
-3. The command to run is "**python screenshare.py [port]**". Default port is 18331. Example commands are below.
+3. To start the screen sharing service, run "**python screenshare.py [port]**".
+
+	The default service port is 18331. Example commands are below.
 
 	\# host screenshots on port 18331  
 	python screenshare.py
