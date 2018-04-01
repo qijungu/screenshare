@@ -1,8 +1,14 @@
 ## Description
 
-For some reasons, I wanted to share my computer screen to other computers in the same local network (LAN or WLAN). I could not find an easy way to do it. So, I created this small screen sharing tool in Python.
+For some reasons, I wanted to share my computer screen to other computers in the same local network (LAN or WLAN). I could not find an easy way to do it. All free and pricey screen sharing services need the computers in the same local network to connect to the Internet. They incur tremendous network traffic on my Internet connection.
 
-In short, the computer to share screen runs this Python script that captures screenshots periodically and hosts screenshots as a web service. Other computers then browse the screenshots with any web browser.
+So, I created this small screen sharing tool in Python. All computers in the same local network only need local network connections for screen sharing. Now, I have zero Internet access concerns while I share my screen to all other computers in my network.
+
+In short, the computer to share screen runs this Python script that captures screenshots periodically and hosts screenshots as a streaming web service. Other computers then browse the screenshots with any web browser.
+
+Of course, if you want to share your screen on the Internet, all you need to do is offering this service on the Internet as any other regular services.
+
+**Security reminder** Do not run this service if you do not need to share screen.
 
 ## Requirements (what I have in my own computer)
 
