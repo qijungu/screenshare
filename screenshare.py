@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask.templating import render_template
@@ -19,7 +17,7 @@ def welcome():
 
 @app.route('/screenfeed/', methods=["POST"])
 def screenfeed():
-    return json.dumps([True, screenlive.gen()])
+    return json.dumps(["True", screenlive.gen().decode('ascii')])
 
 ### main ###
 if __name__ == '__main__':
