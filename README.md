@@ -20,9 +20,9 @@ This tool can run on Linux, Windows and MAC.
 
 ## Install and Run
 
-1. pip install Flask-Bootstrap pyscreenshot
+1. pip install flask-bootstrap pyscreenshot
 
-2. In a directory, run "**git clone https://gitlab.com/qijungu/screenshare.git**". You will have a new directory "screenshare" with code inside.
+2. In a directory, run "**git clone https://github.com/qijungu/screenshare.git**". You will have a new directory "screenshare" with code inside.
 
 3. To start the screen sharing service, run "**python screenshare.py [port]**".
 
