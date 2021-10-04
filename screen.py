@@ -15,6 +15,7 @@ class Screen():
     def __init__(self):
         self.FPS = 10
         self.screenbuf = ""
+        self.password = ""
         if ver==2:
             self.screenfile = StringIO.StringIO()
         elif ver==3:

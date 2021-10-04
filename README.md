@@ -8,6 +8,8 @@ In short, the computer to share screen runs this Python script that captures scr
 
 Of course, if you want to share your screen on the Internet, all you need to do is offering this service on the Internet as any other regular services.
 
+You can set a password to control who can access the screens.
+
 **Security reminder** Do not run this service if you do not need to share screen.
 
 ## Requirements
@@ -24,16 +26,18 @@ This tool can run on Linux, Windows and MAC.
 
 2. In a directory, run "**git clone https://github.com/qijungu/screenshare.git**". You will have a new directory "screenshare" with code inside.
 
-3. To start the screen sharing service, run "**python screenshare.py [port]**".
+3. To start the screen sharing service, run "**python screenshare.py [-p port] [-w password]**".
 
 	The default service port is 18331. Example commands are below.
 
-	\# host screenshots on port 18331  
+	\# host screenshots on port 18331 and no password  
 	python screenshare.py
 
-	\# host screenshots on port 80  
-	python screenshare.py 80
+	\# host screenshots on port 80 and password "abcdef"
+	python screenshare.py -p 80 -w abcdef
+	python screenshare.py --port 80 --password abcdef
 
 4. On other computers, open a web browser and browse "**http://serverip:port**".
 
 	For example, if the server ip is 192.168.0.101 and the service port is 18331, then the URL to browse is "http://192.168.0.101:18331".
+
