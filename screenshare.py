@@ -53,9 +53,24 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--port", help="port, default 18331", type=int, default=18331)
     parser.add_argument("-w", "--password", help="password, default no password", default="")
+    parser.add_argument("-s", "--https", help="enable https, default http", action="store_true")
+    parser.add_argument("-c", "--cert", help="certificate file")
+    parser.add_argument("-k", "--key", help="private key file")
+
     parser.print_help()
     args = parser.parse_args()
     port = args.port
     screenlive.password = args.password
-
-    app.run(host='0.0.0.0', port=port, threaded=True)
+    
+    try:
+        if args.https:
+            if args.cert and args.key:
+                app.run(host='0.0.0.0', port=port, threaded=True, ssl_context=(args.cert, args.key))
+            else:
+                app.run(host='0.0.0.0', port=port, threaded=True, ssl_context='adhoc')
+        else:
+            app.run(host='0.0.0.0', port=port, threaded=True)
+    except Exception as e:
+        print(e.message)
+        print("Some errors in the command, fall back to the default http screen sharing!!!\n")
+        app.run(host='0.0.0.0', port=port, threaded=True)
