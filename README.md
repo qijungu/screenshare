@@ -37,10 +37,13 @@ This tool can run on Linux, Windows and MAC.
 	The default service port is 18331. Example commands are below.
 
 	\# host screenshots on port 18331 and no password
+
 	python screenshare.py
 
 	\# host screenshots on port 80 and password "abcdef"
+
 	python screenshare.py -p 80 -w abcdef
+
 	python screenshare.py --port 80 --password abcdef
 
 2. On other computers, open a web browser and browse "**http://serverip:port**".
@@ -58,13 +61,17 @@ This tool can run on Linux, Windows and MAC.
 	The default service port is 18331. Example commands are below.
 
 	\# host screenshots on port 18331 and no password, https with default built-in certificate and private key
+
 	python screenshare.py **-s**
 
 	\# host screenshots on port 443 and password "abcdef", https with default built-in certificate and private key
+
 	python screenshare.py **-s** -p 443 -w abcdef
+
 	python screenshare.py **-s** --port 443 --password abcdef
 
     \# host screenshots on port 18331 and no password, https with a certificate file and a private key file
+
     python screenshare.py **-s** -c cert.pem -k key.pem
 
 3. On other computers, open a web browser and browse "**https://serverip:port**".
