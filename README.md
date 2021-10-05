@@ -32,7 +32,7 @@ This tool can run on Linux, Windows and MAC.
 
 ## Run as http
 
-1. To start the screen sharing service, run "**python screenshare.py [-p port] [-w password] [-s [-c cert.pem -k key.pem]]**".
+1. To start the screen sharing service, run "**python screenshare.py [-p port] [-w password]**".
 
 	The default service port is 18331. Example commands are below.
 
