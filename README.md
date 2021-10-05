@@ -10,9 +10,9 @@ Of course, if you want to share your screen on the Internet, all you need to do 
 
 ## Updates:
 
-2. (10/5/2021) Add https to screen sharing
++ 10/5/2021: Add https to screen sharing
 
-1. (10/4/2021) Add a feature to set a password to control who can access the screens.
++ 10/4/2021: Add a feature to set a password to control who can access the screens.
 
 **Security reminder** Do not run this service if you do not need to share screen.
 
