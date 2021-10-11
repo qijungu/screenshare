@@ -50,6 +50,12 @@ This tool can run on Linux, Windows and MAC.
 
 	For example, if the server ip is 192.168.0.101 and the service port is 18331, then the URL to browse is "http://192.168.0.101:18331".
 
+3. To terminate:
+
+    In Linux, press CTRL \  (Control Backslash, not CTRL C)
+
+    In Windows, press CTRL Break
+
 ## Run as https
 
 1. (Optional) Create a self-signed certificate and a private key. Or, obtain a signed certificate and private key.
