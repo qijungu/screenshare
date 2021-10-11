@@ -15,16 +15,20 @@
 #You should have received a copy of the GNU General Public License
 #along with Screenshare. If not, see <https://www.gnu.org/licenses/>.
 
-import threading, time, base64
-import pyscreenshot as ig
-
-import sys
+import threading, time, base64, sys
 
 ver = sys.version_info.major
 if ver==2:
-    import StringIO
+    import StringIO as io
 elif ver==3:
     import io
+
+if sys.platform in ["win32", "darwin"]:
+    from PIL import ImageGrab as ig
+else:
+    import pyscreenshot as ig
+    bkend = "pygdk3"
+
 
 class Screen():
     def __init__(self):
@@ -32,7 +36,7 @@ class Screen():
         self.screenbuf = ""
         self.password = ""
         if ver==2:
-            self.screenfile = StringIO.StringIO()
+            self.screenfile = io.StringIO()
         elif ver==3:
             self.screenfile = io.BytesIO()
         threading.Thread(target=self.getframes).start()
@@ -42,7 +46,10 @@ class Screen():
 
     def getframes(self):
         while True:
-            im = ig.grab(childprocess=False,backend="pygdk3")
+            if sys.platform in ["win32", "darwin"]:
+                im = ig.grab()
+            else:
+                im = ig.grab(childprocess=False,backend=bkend)
             self.screenfile.seek(0)
             self.screenfile.truncate(0)
             im.save(self.screenfile, format="jpeg", quality=75, progressive=True)

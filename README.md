@@ -26,7 +26,7 @@ This tool can run on Linux, Windows and MAC.
 
 ## Install
 
-1. pip install flask-bootstrap pyscreenshot pyopenssl
+1. pip install flask-bootstrap pyscreenshot pyopenssl pillow
 
 2. In a directory, run "**git clone https://github.com/qijungu/screenshare.git**". You will have a new directory "screenshare" with code inside.
 
