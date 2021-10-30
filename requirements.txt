@@ -1,0 +1,4 @@
+flask-bootstrap
+pyscreenshot
+pyopenssl
+pillow
