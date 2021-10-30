@@ -52,7 +52,8 @@ class Screen():
                 im = ig.grab(childprocess=False,backend=bkend)
             self.screenfile.seek(0)
             self.screenfile.truncate(0)
-            im.save(self.screenfile, format="jpeg", quality=75, progressive=True)
+            im_converted = im.convert("RGB")
+            im_converted.save(self.screenfile, format="jpeg", quality=75, progressive=True)
             self.screenbuf = base64.b64encode(self.screenfile.getvalue())
             time.sleep(1.0/self.FPS)
     
