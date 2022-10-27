@@ -27,7 +27,7 @@ $(function() {
 
 function screenfeed() {
 	if (frameerrcount < 0) return;
-	$.post('../screenfeed/')
+	$.post('../feed')
 	.then(function(r){
 		ret = $.parseJSON(r);
 		$('img.livescreen').attr('src', 'data:image/jpeg;base64,'+ret[1]);
