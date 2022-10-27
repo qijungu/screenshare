@@ -15,12 +15,18 @@
 #You should have received a copy of the GNU General Public License
 #along with Screenshare. If not, see <https://www.gnu.org/licenses/>.
 
-import threading, time, base64, sys
+__version__ = "1.1"
 
-ver = sys.version_info.major
-if ver==2:
+import sys
+import time
+import base64
+import threading
+
+version = sys.version_info.major
+
+if version == 2:
     import StringIO as io
-elif ver==3:
+elif version == 3:
     import io
 
 if sys.platform in ["win32", "darwin"]:
@@ -32,37 +38,46 @@ else:
 
 class Screen():
     def __init__(self):
-        self.FPS = 10
+        self.fps = 10
+        self.quality = 75
         self.screenbuf = ""
         self.password = ""
-        if ver==2:
+
+        if version == 2:
             self.screenfile = io.StringIO()
-        elif ver==3:
+        elif version == 3:
             self.screenfile = io.BytesIO()
-        threading.Thread(target=self.getframes).start()
+        
+        threading.Thread(target=self.capture_frames, daemon=True).start()
 
     def __del__(self):
         self.screenfile.close()
 
-    def getframes(self):
+    def capture_frames(self):
         while True:
             if sys.platform in ["win32", "darwin"]:
                 im = ig.grab()
             else:
                 im = ig.grab(childprocess=False,backend=bkend)
+            
             self.screenfile.seek(0)
             self.screenfile.truncate(0)
+
             im_converted = im.convert("RGB")
-            im_converted.save(self.screenfile, format="jpeg", quality=75, progressive=True)
+            im_converted.save(self.screenfile, format="jpeg", quality=self.quality, progressive=True)
+
             self.screenbuf = base64.b64encode(self.screenfile.getvalue())
-            time.sleep(1.0/self.FPS)
+
+            time.sleep(1.0/self.fps)
     
-    def gen(self):
+    def get_frame(self):
         s = ''
-        if ver==2:
+
+        if version == 2:
             s = self.screenbuf
-        elif ver==3:
+        elif version == 3:
             s = self.screenbuf.decode()
+        
         return s
     
 screenlive = Screen()

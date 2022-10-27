@@ -15,54 +15,79 @@
 #You should have received a copy of the GNU General Public License
 #along with Screenshare. If not, see <https://www.gnu.org/licenses/>.
 
-from flask import Flask, request, flash, session
-from flask_bootstrap import Bootstrap
+import json
+import argparse
+
+from flask import Flask, request, flash, session, url_for
 from flask.templating import render_template
-import json, argparse
-from screen import screenlive
+from flask_bootstrap import Bootstrap
 from werkzeug.utils import redirect
+
+from screen import screenlive
 
 secret_key = u'f71b10b68b1bc00019cfc50d6ee817e75d5441bd5db0bd83453b398225cede69'
 
 app = Flask(__name__)
 app.secret_key = secret_key
+
 Bootstrap(app)
 
-###### general ##########################################
+
 @app.route('/')
 def welcome():
     session.clear()
     if len(screenlive.password) == 0 :
         session['access'] = True
-        return render_template("screen.html")
-    else :
-        return render_template("login.html")
+        return redirect(url_for('screen'))
+    
+    return redirect(url_for('login'))
 
-@app.route('/login', methods = ['POST'])
+
+@app.route('/login')
 def login():
-    # password is not required
     session.clear()
     if len(screenlive.password) == 0 :
         session['access'] = True
-        return render_template("screen.html")
+        return redirect(url_for('screen'))
+    
+    return render_template('login.html')
+
+
+@app.route('/login', methods = ['POST'])
+def post_login():
+    session.clear()
+
+    if len(screenlive.password) == 0 :
+        session['access'] = True
+        return redirect(url_for('screen'))
 
     p = request.form["password"]
-    if p == screenlive.password :
+
+    if p == screenlive.password:
         session['access'] = True
-        return render_template("screen.html")
-    else :
-        session.clear()
-        flash("Wrong password")
-        return render_template("login.html")
+        return redirect(url_for('screen'))
+    
+    session.clear()
+    flash("Wrong password")
+    return redirect(url_for('login'))
 
-@app.route('/screenfeed/', methods=["POST"])
-def screenfeed():
+
+@app.route('/screen')
+def screen():
     if 'access' in session and session['access']:
-        return json.dumps([True, screenlive.gen()])
-    else:
-        redirect('/')
+        return render_template('screen.html')
+    
+    return redirect(url_for('login'))
 
-### main ###
+
+@app.route('/feed', methods=["POST"])
+def feed():
+    if 'access' in session and session['access']:
+        return json.dumps([True, screenlive.get_frame()])
+    
+    return redirect(url_for('login'))
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--port", help="port, default 18331", type=int, default=18331)
@@ -84,6 +109,7 @@ if __name__ == '__main__':
                 app.run(host='0.0.0.0', port=port, threaded=True, ssl_context='adhoc')
         else:
             app.run(host='0.0.0.0', port=port, threaded=True)
+    
     except Exception as e:
         print(e.message)
         print("Some errors in the command, fall back to the default http screen sharing!!!\n")

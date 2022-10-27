@@ -53,19 +53,25 @@ class="homepage"
 <section id="feature" class="fullwidth">
 	<div class="container fullwidth">
 		<div class="center fullwidth">
-			<form action="/login" method="post">
-			    <div class="form-group">
-				    <label for="password">Password : </label>
-				    <input type="password" class="form-control" placeholder="Enter password" id="password" name="password">
-			    </div>
-			    <button type="submit" class="btn btn-primary">Submit</button>
-			</form>
-			{% for message in get_flashed_messages() %}
-			    <div class="alert alert-warning alert-dismissible" role="alert">
-				    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				    <strong> {{ message }} </strong>
-			    </div>
-		    {% endfor %}
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<h3>Screenlive share</h3>
+					<form action="{{ url_for('post_login') }}" method="post">
+						<div class="form-group">
+							<label for="password">Password : </label>
+							<input type="password" class="form-control" placeholder="Enter password" id="password" name="password">
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+					{% for message in get_flashed_messages() %}
+						<div class="alert alert-warning alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<strong> {{ message }} </strong>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
